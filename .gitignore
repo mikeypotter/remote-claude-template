@@ -1,0 +1,42 @@
+# Credentials & secrets
+.bash_secrets
+client_secret.json
+.env
+.env.local
+.env.*
+secrets.json
+
+# Shell history & editor state
+.bash_history
+.lesshst
+.viminfo
+.vim/
+
+# SSH keys
+.ssh/
+
+# Caches & transient data
+.cache/
+.local/
+.npm/
+.npmrc
+.config/
+
+# Claude session data (keep memory files, ignore session state)
+.claude/cache/
+.claude/debug/
+.claude/backups/
+.claude/history.jsonl
+.claude/sessions/
+.claude/projects/**/*.jsonl
+.claude/projects/**/subagents/
+.claude/projects/**/tool-results/
+.claude/projects/**/bridge-pointer.json
+.claude/settings.local.json
+.claude/remote-settings.json
+.claude.json
+
+# System
+.DS_Store
+.gitconfig
+.profile
