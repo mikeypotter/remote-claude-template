@@ -18,21 +18,53 @@ Each agent runs in its own [tmux](https://github.com/tmux/tmux) session and has 
 - [Claude CLI](https://docs.anthropic.com/en/docs/claude-code)
 - Git
 
-## Quickstart
+## Setup
+
+There are two ways to use this template.
+
+### Option A: Clone into a subdirectory (simple)
+
+Good if you just want agents in a self-contained folder.
 
 ```bash
-# Clone the repo
-git clone <your-repo-url> ~/agents-repo
-cd ~/agents-repo
+git clone https://github.com/mikeypotter/remote-claude-template ~/agents
+cd ~/agents
 
 # Rename the template agent to something meaningful
-mv agents/your-agent-name agents/assistant   # or whatever fits
+mv agents/your-agent-name agents/assistant
 
 # Fill in the agent's personality
 edit agents/assistant/CLAUDE.md
 
-# Add skills under agents/assistant/skills/
+# Run all agents
+./agents/run-agents.sh
+```
 
+### Option B: Use as a home directory template (recommended for remote machines)
+
+This sets up your home directory as a git repo that tracks this template as an upstream — so you get template updates while keeping your own agents and customizations in a separate repo.
+
+```bash
+cd ~
+git init
+git remote add upstream https://github.com/mikeypotter/remote-claude-template
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO
+git fetch upstream
+git checkout -b main upstream/main
+git push -u origin main
+```
+
+Your agents, skills, and any files you add or modify are committed to `origin`. When the template is updated, pull changes with:
+
+```bash
+git fetch upstream && git merge upstream/main
+```
+
+The `.gitignore` is pre-configured to exclude secrets, SSH keys, credentials, and Claude session data — only your agent config, memory, and skills are tracked.
+
+## Running agents
+
+```bash
 # Run all agents
 ./agents/run-agents.sh
 
@@ -73,6 +105,6 @@ tmux attach-session -t coach
 
 ## Git backup
 
-This repo is designed to be pushed to GitHub. All agent config, memory, and skills are tracked. Credentials and session data are gitignored.
+All agent config, memory, and skills are tracked. Credentials and session data are gitignored.
 
 Commit and push after any change — the git history is your audit trail and recovery mechanism.
