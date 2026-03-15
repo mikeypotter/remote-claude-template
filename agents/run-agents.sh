@@ -23,6 +23,7 @@ start_agent() {
 if [ -z "$1" ] || [ "$1" = "all" ]; then
     [ -z "$1" ] && sleep 10
     for dir in ~/agents/*/; do
+        [ "$(basename "$dir")" = "Your-agent-name" ] && continue
         start_agent "$dir"
     done
 else
