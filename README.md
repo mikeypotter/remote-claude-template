@@ -30,14 +30,14 @@ Good if you just want agents in a self-contained folder.
 git clone https://github.com/mikeypotter/remote-claude-template ~/agents
 cd ~/agents
 
-# Rename the template agent to something meaningful
-mv agents/your-agent-name agents/assistant
+# Rename the example agent to something meaningful
+mv agents/example agents/assistant
 
 # Fill in the agent's personality
 edit agents/assistant/CLAUDE.md
 
 # Run all agents
-./agents/run-agents.sh
+./tools/run-agents.sh
 ```
 
 ### Option B: Use as a home directory template (recommended for remote machines)
@@ -54,11 +54,19 @@ git checkout -b main upstream/main
 git push -u origin main
 ```
 
+**One-time setup** — enable the merge strategy so your customized files are never overwritten by upstream updates:
+
+```bash
+git config merge.ours.driver true
+```
+
 Your agents, skills, and any files you add or modify are committed to `origin`. When the template is updated, pull changes with:
 
 ```bash
 git fetch upstream && git merge upstream/main
 ```
+
+The `.gitattributes` file protects your `CLAUDE.md`, `README.md`, `.gitignore`, and `agents/` directory from being overwritten by upstream merges. Infrastructure in `tools/` updates cleanly.
 
 The `.gitignore` is pre-configured to exclude secrets, SSH keys, credentials, and Claude session data — only your agent config, memory, and skills are tracked.
 
@@ -66,10 +74,10 @@ The `.gitignore` is pre-configured to exclude secrets, SSH keys, credentials, an
 
 ```bash
 # Run all agents
-./agents/run-agents.sh
+./tools/run-agents.sh
 
 # Or run a single agent
-./agents/run-agents.sh assistant
+./tools/run-agents.sh assistant
 
 # Attach to an agent's tmux session
 tmux attach-session -t assistant
@@ -77,29 +85,30 @@ tmux attach-session -t assistant
 
 ## Adding agents
 
-Copy `agents/your-agent-name/` to a new directory, fill in `CLAUDE.md`, add skills. Then re-run `run-agents.sh`.
+Copy `agents/example/` to a new directory, fill in `CLAUDE.md`, add skills. Then re-run `tools/run-agents.sh`.
 
 ## Utilities
 
 | Script | Purpose |
 |--------|---------|
-| `update-skills.sh` | Updates all skill submodules to their latest upstream versions |
-| `agents/reset-agent.sh` | Sends `/clear` to one or all agent tmux sessions |
+| `tools/update-skills.sh` | Updates all skill submodules to their latest upstream versions |
+| `tools/reset-agent.sh` | Sends `/clear` to one or all agent tmux sessions |
+| `tools/run-agents.sh` | Launches agents in tmux sessions (one or all) |
 
 ```bash
 # Update all skill submodules
-./update-skills.sh
+./tools/update-skills.sh
 
 # Reset all agents
-./agents/reset-agent.sh all
+./tools/reset-agent.sh all
 
 # Reset a single agent
-./agents/reset-agent.sh assistant
+./tools/reset-agent.sh assistant
 ```
 
 ## Adding skills
 
-See `agents/your-agent-name/skills/README.md` for the skill format and `skills/example-skill/SKILL.md` for a template.
+See `agents/example/skills/README.md` for the skill format and `skills/example-skill/SKILL.md` for a template.
 
 ## Memory
 

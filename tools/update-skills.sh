@@ -2,7 +2,7 @@
 # Update all skill submodules to their latest upstream versions
 set -e
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 
 echo "Updating all skill submodules..."
 git submodule update --remote --merge
