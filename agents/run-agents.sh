@@ -7,7 +7,7 @@ start_agent() {
     local dir="$1"
     local name=$(basename "$dir")
     local display_name="$(tr '[:lower:]' '[:upper:]' <<< "${name:0:1}")${name:1}"
-    tmux kill-session -t "$name" 2>/dev/null
+    tmux kill-session -t "$name" 2>/dev/null || true
     tmux new-session -d -s "$name"
     tmux send-keys -t "$name" "cd \"$dir\" && claude --dangerously-skip-permissions --continue --remote-control" Enter
     sleep 3
