@@ -20,29 +20,7 @@ Each agent runs in its own [tmux](https://github.com/tmux/tmux) session and has 
 
 ## Setup
 
-There are two ways to use this template.
-
-### Option A: Clone into a subdirectory (simple)
-
-Good if you just want agents in a self-contained folder.
-
-```bash
-git clone https://github.com/mikeypotter/remote-claude-template ~/agents
-cd ~/agents
-
-# Rename the example agent to something meaningful
-mv agents/example agents/assistant
-
-# Fill in the agent's personality
-edit agents/assistant/CLAUDE.md
-
-# Run all agents
-./tools/run-agents.sh
-```
-
-### Option B: Use as a home directory template (recommended for remote machines)
-
-This sets up your home directory as a git repo that tracks this template as an upstream — so you get template updates while keeping your own agents and customizations in a separate repo.
+This template turns your home directory into a git repo that tracks the template as an upstream remote. Your agents and customizations live in your own repo, and you can pull template updates without merge conflicts.
 
 ```bash
 cd ~
@@ -52,23 +30,24 @@ git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO
 git fetch upstream
 git checkout -b main upstream/main
 git push -u origin main
-```
 
-**One-time setup** — enable the merge strategy so your customized files are never overwritten by upstream updates:
-
-```bash
+# Enable the merge strategy so your customized files are never overwritten
 git config merge.ours.driver true
+
+# Rename the example agent
+mv agents/example agents/assistant
+edit agents/assistant/CLAUDE.md
 ```
 
-Your agents, skills, and any files you add or modify are committed to `origin`. When the template is updated, pull changes with:
+### Pulling template updates
 
 ```bash
 git fetch upstream && git merge upstream/main
 ```
 
-The `.gitattributes` file protects your `CLAUDE.md`, `README.md`, `.gitignore`, and `agents/` directory from being overwritten by upstream merges. Infrastructure in `tools/` updates cleanly.
+The `.gitattributes` file protects your `CLAUDE.md`, `README.md`, `.gitignore`, and `agents/` directory from being overwritten. Infrastructure in `tools/` updates cleanly.
 
-The `.gitignore` is pre-configured to exclude secrets, SSH keys, credentials, and Claude session data — only your agent config, memory, and skills are tracked.
+The `.gitignore` excludes secrets, SSH keys, credentials, and Claude session data — only agent config, memory, and skills are tracked.
 
 ## Running agents
 
