@@ -79,6 +79,24 @@ tmux attach-session -t assistant
 
 Copy `agents/your-agent-name/` to a new directory, fill in `CLAUDE.md`, add skills. Then re-run `run-agents.sh`.
 
+## Utilities
+
+| Script | Purpose |
+|--------|---------|
+| `update-skills.sh` | Updates all skill submodules to their latest upstream versions |
+| `agents/reset-agent.sh` | Sends `/clear` to one or all agent tmux sessions |
+
+```bash
+# Update all skill submodules
+./update-skills.sh
+
+# Reset all agents
+./agents/reset-agent.sh all
+
+# Reset a single agent
+./agents/reset-agent.sh assistant
+```
+
 ## Adding skills
 
 See `agents/your-agent-name/skills/README.md` for the skill format and `skills/example-skill/SKILL.md` for a template.
