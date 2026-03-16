@@ -34,9 +34,9 @@ git push -u origin main
 # Enable the merge strategy so your customized files are never overwritten
 git config merge.ours.driver true
 
-# Rename the example agent
-mv agents/example agents/assistant
-edit agents/assistant/CLAUDE.md
+# Rename the example agent to something meaningful
+mv agents/example agents/my-agent
+edit agents/my-agent/CLAUDE.md
 ```
 
 ### Pulling template updates
@@ -56,10 +56,10 @@ The `.gitignore` excludes secrets, SSH keys, credentials, and Claude session dat
 ./tools/run-agents.sh
 
 # Or run a single agent
-./tools/run-agents.sh assistant
+./tools/run-agents.sh my-agent
 
 # Attach to an agent's tmux session
-tmux attach-session -t assistant
+tmux attach-session -t my-agent
 ```
 
 ## Adding agents
@@ -82,7 +82,7 @@ Copy `agents/example/` to a new directory, fill in `CLAUDE.md`, add skills. Then
 ./tools/reset-agent.sh all
 
 # Reset a single agent
-./tools/reset-agent.sh assistant
+./tools/reset-agent.sh my-agent
 ```
 
 ## Adding skills
@@ -105,8 +105,7 @@ Use the Claude Code iOS or Android app and connect to the same remote session. S
 Each agent is its own tmux session. To switch, just tell Claude Code to connect to a different session, or attach manually:
 
 ```bash
-tmux attach-session -t assistant
-tmux attach-session -t coach
+tmux attach-session -t my-agent
 ```
 
 ## Git backup
