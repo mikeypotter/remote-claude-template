@@ -52,11 +52,15 @@ The `.gitignore` excludes secrets, SSH keys, credentials, and Claude session dat
 ## Running agents
 
 ```bash
-# Run all agents
+# Run all agents (defaults to claude)
 ./tools/run-agents.sh
 
 # Or run a single agent
 ./tools/run-agents.sh my-agent
+
+# Use a different provider
+./tools/run-agents.sh my-agent --provider gemini
+./tools/run-agents.sh my-agent --provider codex
 
 # Attach to an agent's tmux session
 tmux attach-session -t my-agent
