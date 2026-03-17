@@ -8,7 +8,7 @@ Each agent runs in its own [tmux](https://github.com/tmux/tmux) session and has 
 
 | File | Purpose |
 |------|---------|
-| `CLAUDE.md` | Personality, tone, rules, and context for this agent |
+| `AGENTS.md` | Personality, tone, rules, and context for this agent |
 | `MEMORY.md` | Persists context across sessions — updated by the agent at end of each session |
 | `skills/` | Capabilities — each skill is a subdirectory with a `SKILL.md` the agent reads and follows |
 
@@ -36,7 +36,7 @@ git config merge.ours.driver true
 
 # Rename the example agent to something meaningful
 mv agents/example agents/my-agent
-edit agents/my-agent/CLAUDE.md
+edit agents/my-agent/AGENTS.md
 ```
 
 ### Pulling template updates
@@ -64,7 +64,7 @@ tmux attach-session -t my-agent
 
 ## Adding agents
 
-Copy `agents/example/` to a new directory, fill in `CLAUDE.md`, add skills. Then re-run `tools/run-agents.sh`.
+Copy `agents/example/` to a new directory, fill in `AGENTS.md`, add skills. Then re-run `tools/run-agents.sh`.
 
 ## Utilities
 

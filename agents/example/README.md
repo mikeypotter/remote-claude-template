@@ -4,7 +4,7 @@ Rename this directory to something meaningful (e.g., `assistant`, `coach`, `rese
 
 ## Files
 
-### `CLAUDE.md`
+### `AGENTS.md`
 The agent's personality, rules, and context. This is what Claude reads to understand its role. Fill in:
 - Who it is and what it does
 - The user's name, role, and relevant context
@@ -21,6 +21,6 @@ Each subdirectory is a skill — a specific capability the agent can run on dema
 ## Customizing
 
 1. Rename this directory
-2. Edit `CLAUDE.md` with the agent's personality and context
+2. Edit `AGENTS.md` with the agent's personality and context
 3. Add skills under `skills/`
 4. Run `../run-agents.sh your-agent-name`

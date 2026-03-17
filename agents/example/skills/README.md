@@ -15,7 +15,7 @@ The agent will find the corresponding `SKILL.md` and execute the steps.
 
 1. Create a new subdirectory: `skills/your-skill-name/`
 2. Add a `SKILL.md` following the format in `example-skill/SKILL.md`
-3. Mention the skill in the agent's `CLAUDE.md` so it knows it exists
+3. Mention the skill in the agent's `AGENTS.md` so it knows it exists
 
 ## Skill format
 
