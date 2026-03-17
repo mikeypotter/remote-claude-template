@@ -1,6 +1,6 @@
-# Claude Agents
+# Remote Agent Template
 
-A framework for running persistent, specialized Claude agents — each with its own personality, memory, and skills — backed up via git.
+A framework for running persistent, specialized AI agents — each with its own personality, memory, and skills — backed up via git. Works with Claude, Gemini, Codex, or any AI CLI tool.
 
 ## How it works
 
@@ -15,7 +15,7 @@ Each agent runs in its own [tmux](https://github.com/tmux/tmux) session and has 
 ## Prerequisites
 
 - [tmux](https://github.com/tmux/tmux)
-- [Claude CLI](https://docs.anthropic.com/en/docs/claude-code)
+- An AI CLI tool — [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Gemini CLI](https://github.com/google-gemini/gemini-cli), [Codex CLI](https://github.com/openai/codex), or similar
 - Git
 
 ## Setup
@@ -25,7 +25,7 @@ This template turns your home directory into a git repo that tracks the template
 ```bash
 cd ~
 git init
-git remote add upstream https://github.com/mikeypotter/remote-claude-template
+git remote add upstream https://github.com/mikeypotter/remote-agent-template
 git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO
 git fetch upstream
 git checkout -b main upstream/main
@@ -45,9 +45,9 @@ edit agents/my-agent/AGENTS.md
 git fetch upstream && git merge upstream/main
 ```
 
-The `.gitattributes` file protects your `CLAUDE.md`, `README.md`, `.gitignore`, and `agents/` directory from being overwritten. Infrastructure in `tools/` updates cleanly.
+The `.gitattributes` file protects your `AGENTS.md`, `README.md`, `.gitignore`, and `agents/` directory from being overwritten. Infrastructure in `tools/` updates cleanly.
 
-The `.gitignore` excludes secrets, SSH keys, credentials, and Claude session data — only agent config, memory, and skills are tracked.
+The `.gitignore` excludes secrets, SSH keys, credentials, and AI session data — only agent config, memory, and skills are tracked.
 
 ## Running agents
 
@@ -100,13 +100,13 @@ Agents read `MEMORY.md` at the start of each session and update it at the end. T
 ## Talking to your agents
 
 ### From your desktop
-The [Claude Code desktop app](https://docs.anthropic.com/en/docs/claude-code) lets you connect to a remote machine running your agents. Once connected, you can chat with any agent directly from the app — no terminal required.
+Connect to the remote machine running your agents via SSH or a remote development tool. Once connected, you can chat with any agent directly from your terminal or IDE — no extra setup required.
 
 ### From your phone
-Use the Claude Code iOS or Android app and connect to the same remote session. Since agents run in persistent tmux sessions, they're always available — you can pick up a conversation from your phone that you started on your desktop, or kick off a skill while away from your computer.
+SSH into your remote machine from a mobile terminal app. Since agents run in persistent tmux sessions, they're always available — pick up a conversation from your phone that you started on your desktop, or kick off a task while away from your computer.
 
 ### Switching between agents
-Each agent is its own tmux session. To switch, just tell Claude Code to connect to a different session, or attach manually:
+Each agent is its own tmux session. To switch, attach to a different session:
 
 ```bash
 tmux attach-session -t my-agent

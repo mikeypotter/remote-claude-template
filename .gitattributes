@@ -1,5 +1,5 @@
 # User-customizable files — never overwritten by upstream merges
-CLAUDE.md merge=ours
+AGENTS.md merge=ours
 README.md merge=ours
 .gitignore merge=ours
 agents/ merge=ours
